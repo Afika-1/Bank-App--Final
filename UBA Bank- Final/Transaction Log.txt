@@ -1,0 +1,12 @@
+
+A deposit of: +R3000 has been made
+	Date: 23/07/05 11:42:32
+	Updated balance: R3000.00
+A Payment of: -R500 has been made on 
+\To Account: 1234576
+	Date: 23/07/05 11:49:04
+	Updated balance: R700.00
+
+A deposit of: +R2500 has been made
+	Date: 23/07/05 11:49:52
+	Updated balance: R3200.00
