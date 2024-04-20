@@ -93,14 +93,7 @@ def copy():
     pyperclip.copy(randomPass)
     pass_screen.destroy()
 
-    #--------------------------------------------------------------------------------------------------------
-    """ Password Generator ends... """
-    #--------------------------------------------------------------------------------------------------------
-    #--------------------------------------------------------------------------------------------------------
-
-    """ Bank app starts below"""
-    #--------------------------------------------------------------------------------------------------------
-
+    
 def finish_reg():
     name=temp_name.get()
     account_num=temp_account_num.get()
@@ -377,6 +370,10 @@ def beneficiary():
      Button(beneficiary_screen,text='Pay',cursor="hand2",bg='black',fg='white',font=('Baskervill Old Face', 12), command=finish_payment).grid(row=7,sticky=W,pady=5)
 
 def finish_payment():
+    if  beneficiary_account.get()=="":
+        beneficiary_notif.config(text="Enter beneficiary account", fg="red")
+        return
+     
     if beneficiary_amount.get()=="":
         beneficiary_notif.config(text="Enter amount", fg="red")
         return
@@ -492,7 +489,7 @@ def login_session():
             file_data= file_data.split('\n')
             password= file_data[3]
             login_account=file_data[1]
-            name=file_data[1]
+            name=file_data[0]
             if temp_login_account=="" and temp_password=="":
                 login_notif.config(fg="red", text="Enter credentials")
 
@@ -636,29 +633,29 @@ login_img = login_img.resize((220,120))
 login_img= ImageTk.PhotoImage(login_img)
 
 
-login_img_info= Image.open('Media/unitedbank2x_.png')
+login_img_info= Image.open('UBA Bank- Final/Media/unitedbank2x_.png')
 login_img_info = login_img_info.resize((150,150))
 login_img_info= ImageTk.PhotoImage(login_img_info)
 
 
-reg_img= Image.open('Media/carte-de-debit-removebg-.png')
+reg_img= Image.open('UBA Bank- Final/Media/carte-de-debit-removebg-.png')
 reg_img = reg_img.resize((250,150))
 reg_img= ImageTk.PhotoImage(reg_img)
 
-details_img= Image.open('Media/UBA-Daily.png')
+details_img= Image.open('UBA Bank- Final/Media/UBA-Daily.png')
 details_img = details_img.resize((70,50))
 details_img= ImageTk.PhotoImage(details_img)
 
-deposit_img= Image.open('Media/United_Bank.png')
+deposit_img= Image.open('UBA Bank- Final/Media/United_Bank.png')
 deposit_img = deposit_img.resize((80,60))
 deposit_img= ImageTk.PhotoImage(deposit_img)
 
-withdraw_img= Image.open('Media/United_Bank.png')
+withdraw_img= Image.open('UBA Bank- Final/Media/United_Bank.png')
 withdraw_img = withdraw_img.resize((70,50))
 withdraw_img= ImageTk.PhotoImage(withdraw_img)
 
 
-details_img_bottom= Image.open('Media/pngtree-bank-icon.png')
+details_img_bottom= Image.open('UBA Bank- Final/Media/pngtree-bank-icon.png')
 details_img_bottom = details_img_bottom.resize((70,50))
 details_img_bottom= ImageTk.PhotoImage(details_img_bottom)
 

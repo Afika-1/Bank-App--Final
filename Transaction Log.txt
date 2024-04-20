@@ -1,0 +1,5 @@
+
+A deposit of: +R12 has been made
+	Date: 24/04/21 00:55:31
+	Updated balance: R12.00
+A Payment of: -R3 has been made on \n\To Account: \n\tDate: 24/04/21 01:06:45\n\tUpdated balance: R9.00
