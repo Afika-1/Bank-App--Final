@@ -406,7 +406,8 @@ def finish_payment():
     file.close()
 
     transaction_datetime = datetime.datetime.now()
-    transaction_log("A Payment of: -R"+beneficiary_amount.get()+" has been made on \n\To Account: "+beneficiary_account.get()+"\n\t"+'Date: '+transaction_datetime.strftime("%y/%m/%d %H:%M:%S")+ f"\n\tUpdated balance: R{updated_balance:.2f}")
+    # transaction_log("A Payment of: -R"+beneficiary_amount.get()+" has been made on \n\To Account: "+beneficiary_account.get()+"\n\t"+'Date: '+transaction_datetime.strftime("%y/%m/%d %H:%M:%S")+ f"\n\tUpdated balance: R{updated_balance:.2f}")
+    transaction_log("A Payment of: -R" + beneficiary_amount.get() + " has been made on \\n\\To Account: " + beneficiary_account.get() + "\\n\\t" + 'Date: ' + transaction_datetime.strftime("%y/%m/%d %H:%M:%S") + f"\\n\\tUpdated balance: R{updated_balance:.2f}")
 
     messagebox.showinfo(title="Congratulations!", message=("YOUR PAYMENT WAS SUCCESSFUL!!! \n\n"))
 
@@ -625,12 +626,12 @@ def reset_session():
     
 
 #image
-img= Image.open('Media/uba-logo-copy@3x.png')
+img= Image.open('UBA Bank- Final/Media/uba-logo-copy@3x.png')
 img = img.resize((200,150))
 img= ImageTk.PhotoImage(img)
 
 
-login_img= Image.open('Media/mastercard-.png')
+login_img= Image.open('UBA Bank- Final/Media/mastercard-.png')
 login_img = login_img.resize((220,120))
 login_img= ImageTk.PhotoImage(login_img)
 
