@@ -27,7 +27,9 @@ def passGen():
     global pass_screen
 
     pass_screen=Toplevel(bank_Window)
-
+    pass_screen.grab_set()
+    
+    
     pass_screen.config(bg="black", pady=10, padx=20)
     pass_screen.geometry('250x280')
     passLabel = Label(pass_screen, text="Generate Password", bg="black",
@@ -59,10 +61,7 @@ def forgetReg():
 
 def generatePass():
     # password_length = 8 if choice.get() == 1 else 12
-
-    messagebox.showinfo(title="Congratulations!", 
-                        message=("YOU HAVE SUCCESSFULLY GENERATED YOUR PASSWORD!!\n\n Please copy and past it on the password field to complete your registration.\n"))
-
+    
     lower_char = string.ascii_lowercase
     upper_char = string.ascii_uppercase
     num = string.digits
@@ -86,6 +85,10 @@ def generatePass():
         passEntry.insert(0, password)
         return password
     
+    pass_screen.grab_set()
+    messagebox.showinfo(title="Congratulations!", 
+                        message=("YOU HAVE SUCCESSFULLY GENERATED YOUR PASSWORD!!\n\n Please copy and past it on the password field to complete your registration.\n"))
+
 
 def copy():
 
@@ -140,6 +143,7 @@ def register():
     temp_password=StringVar()
 
     register_screen= Toplevel(bank_Window)
+    register_screen.grab_set()
     register_screen.title('Register')
     register_screen.configure(bg='black',padx=30, pady=10)
     register_screen.geometry('300x500')
@@ -406,7 +410,7 @@ def finish_payment():
     # transaction_log("A Payment of: -R"+beneficiary_amount.get()+" has been made on \n\To Account: "+beneficiary_account.get()+"\n\t"+'Date: '+transaction_datetime.strftime("%y/%m/%d %H:%M:%S")+ f"\n\tUpdated balance: R{updated_balance:.2f}")
     transaction_log("A Payment of: -R" + beneficiary_amount.get() + " has been made on \\n\\To Account: " + beneficiary_account.get() + "\\n\\t" + 'Date: ' + transaction_datetime.strftime("%y/%m/%d %H:%M:%S") + f"\\n\\tUpdated balance: R{updated_balance:.2f}")
 
-    messagebox.showinfo(title="Congratulations!", message=("YOUR PAYMENT WAS SUCCESSFUL!!! \n\n"))
+    messagebox.showinfo(title="Congratulations!", message=("YOUR PAYMENT WAS SUCCESSFUL!!! \n\n"),  command=login_session)
 
     current_balance_label.config(text=f"Current Balance: R{updated_balance:.2f}",fg='#35dd02')
     beneficiary_notif.config(text="Balance Updated",fg='#35dd02',)
