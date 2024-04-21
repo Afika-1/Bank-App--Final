@@ -2,10 +2,34 @@
 A deposit of: +R12 has been made
 	Date: 24/04/21 00:55:31
 	Updated balance: R12.00
-A Payment of: -R3 has been made on \n\To Account: \n\tDate: 24/04/21 01:06:45\n\tUpdated balance: R9.00
-A Payment of: -R1 has been made on \n\To Account: 1234\n\tDate: 24/04/21 01:18:46\n\tUpdated balance: R8.00
-A Payment of: -R1 has been made on \n\To Account: 1234\n\tDate: 24/04/21 01:25:18\n\tUpdated balance: R7.00
-
 A deposit of: +R123 has been made
 	Date: 24/04/21 05:23:06
 	Updated balance: R123.00
+
+A deposit of: +R12 has been made
+	Date: 24/04/21 06:04:46
+	Updated balance: R135.00
+A Payment of: -R34 has been made on 
+To Account: 15322
+	Date: 24/04/21 06:05:45
+	Updated balance: R101.00
+A Payment of: -R34 has been made on 
+To Account: 15322
+	Date: 24/04/21 06:10:21
+	Updated balance: R67.00
+A Payment of: -R11 has been made on 
+To Account: 12
+	Date: 24/04/21 06:10:55
+	Updated balance: R56.00
+A Payment of: -R1 has been made on 
+To Account: 1
+	Date: 24/04/21 06:17:04
+	Updated balance: R55.00
+A Payment of: -R1 has been made on 
+To Account: 2
+	Date: 24/04/21 06:21:36
+	Updated balance: R54.00
+
+A Withdrawal of: -R12 has been made on 
+	24/04/21 16:34:10
+	Updated balance: R42.00

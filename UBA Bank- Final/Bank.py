@@ -32,7 +32,7 @@ def passGen():
     
     
     pass_screen.config(bg="black", pady=10, padx=20)
-    pass_screen.geometry('250x280')
+    pass_screen.geometry('300x550')
     passLabel = Label(pass_screen, text="Generate Password", bg="black",
                       fg="white", font=('Baskerville Old Face', 16, 'bold'))
     passLabel.grid(sticky=N, pady=20, padx=30)
@@ -55,11 +55,11 @@ def passGen():
     
     generatorButton = Button(pass_screen, text="Generate", bg="black",
                              fg="white", cursor="hand2", command=generatePass, font=("Arial", 12))
-    generatorButton.grid(row=7, sticky=W, padx=10, pady=5)
+    generatorButton.grid(row=8, sticky=W, padx=10, pady=5)
 
     copyButton = Button(pass_screen, text="Copy", command=copy, fg="white",bg="black", cursor="hand2",
                         font=("Arial", 12))
-    copyButton.grid(row=7, sticky=E, padx=30, pady=5)
+    copyButton.grid(row=8, sticky=E, padx=30, pady=5)
 
 def forgetReg():
     pass_screen.place(x=300,y=3)
@@ -167,7 +167,7 @@ def register():
     register_screen.grab_set()
     register_screen.title('Register')
     register_screen.configure(bg='black',padx=30, pady=10)
-    register_screen.geometry('300x500')
+    register_screen.geometry('300x550')
 
     #Reg screen labels and Entries
     Button(register_screen,text="X",command=destroy_register_screen).grid(row=0,sticky=E)
@@ -241,7 +241,7 @@ def deposit():
      deposit_screen.grab_set()
      deposit_screen.title('Deposit')
      deposit_screen.configure(bg='black',pady=40,padx=20)
-     deposit_screen.geometry('250x400')
+     deposit_screen.geometry('300x550')
 
      Label(deposit_screen, image=deposit_img, borderwidth=0,bg='black').grid(row=0,sticky=W)
      Button(deposit_screen,text="X",command=destroy_deposit_screen).grid(row=0,sticky=E)
@@ -284,7 +284,7 @@ def finish_deposit():
 
     transaction_datetime = datetime.datetime.now()
 
-    transaction_log("\nA deposit of: +R"+str(amount.get())+" has been made\n\tDate: "+transaction_datetime.strftime("%y/%m/%d %H:%M:%S")+ f"\n\tUpdated balance: R{updated_balance:.2f}")
+    transaction_log("\nA deposit of: +R"+str(amount.get())+" has been made.\n\tDate: "+transaction_datetime.strftime("%y/%m/%d %H:%M:%S")+ f".\n\tUpdated balance: R{updated_balance:.2f}")
 
     current_balance_label.config(text=f"Current Balance: R{updated_balance:.2f}",fg="#35dd02",bg='black')
     deposit_notif.config(text="Balance Updated",fg='#35dd02',bg='black')
@@ -315,7 +315,7 @@ def withdraw():
      withdraw_screen.grab_set()
      withdraw_screen.title('Withdraw')
      withdraw_screen.configure(bg='black',pady=40,padx=20)
-     withdraw_screen.geometry('250x400')
+     withdraw_screen.geometry('300x550')
 
      Label(withdraw_screen, image=withdraw_img, borderwidth=0,bg='black').grid(row=0,sticky=W)
      Button(withdraw_screen,text="X",command=destroy_withdraw_screen).grid(row=0,sticky=E)
@@ -388,7 +388,7 @@ def beneficiary():
      beneficiary_screen.grab_set()
      beneficiary_screen.title('Withdraw')
      beneficiary_screen.configure(bg='black',pady=40,padx=20)
-     beneficiary_screen.geometry('280x450')
+     beneficiary_screen.geometry('300x550')
 
      Label(beneficiary_screen, image=withdraw_img, borderwidth=0,bg='black').grid(row=0,sticky=W)
      Button(beneficiary_screen,text="X",command=destroy_beneficiary_screen).grid(row=0,sticky=E)
@@ -407,7 +407,7 @@ def beneficiary():
      beneficiary_notif=Label(beneficiary_screen,bg='black' ,font=('Baskervill Old Face',12))
      beneficiary_notif.grid(row=6, sticky=N, pady=5)
 
-     Button(beneficiary_screen,text='Pay',cursor="hand2",bg='black',fg='white',font=('Baskervill Old Face', 12), command=finish_payment).grid(row=7,sticky=W,pady=5)
+     Button(beneficiary_screen,text='Pay',cursor="hand2",bg='black',fg='white',font=('Baskervill Old Face', 12), command=finish_payment).grid(row=8,sticky=W,pady=5)
 
 def finish_payment():
     if  beneficiary_account.get()=="":
@@ -443,10 +443,10 @@ def finish_payment():
     file.close()
 
     transaction_datetime = datetime.datetime.now()
-    # transaction_log("A Payment of: -R"+beneficiary_amount.get()+" has been made on \n\To Account: "+beneficiary_account.get()+"\n\t"+'Date: '+transaction_datetime.strftime("%y/%m/%d %H:%M:%S")+ f"\n\tUpdated balance: R{updated_balance:.2f}")
-    transaction_log("A Payment of: -R" + beneficiary_amount.get() + " has been made on \\n\\To Account: " + beneficiary_account.get() + "\\n\\t" + 'Date: ' + transaction_datetime.strftime("%y/%m/%d %H:%M:%S") + f"\\n\\tUpdated balance: R{updated_balance:.2f}")
+    transaction_log("A Payment of: -R"+beneficiary_amount.get()+" has been made on \nTo Account: "+beneficiary_account.get()+"\n\t"+'Date: '+transaction_datetime.strftime("%y/%m/%d %H:%M:%S")+ f"\n\tUpdated balance: R{updated_balance:.2f}")
+    # transaction_log("A Payment of: -R" + beneficiary_amount.get() + " has been made on \\n\\To Account: " + beneficiary_account.get() + "\\n\\t" + 'Date: ' + transaction_datetime.strftime("%y/%m/%d %H:%M:%S") + f"\\n\\tUpdated balance: R{updated_balance:.2f}")
 
-    messagebox.showinfo(title="Congratulations!", message=("YOUR PAYMENT WAS SUCCESSFUL!!! \n\n"),  command=dashboard)
+    messagebox.showinfo(title="Congratulations!", message=("\nYOUR PAYMENT WAS SUCCESSFUL!!! \n\n"))
 
     current_balance_label.config(text=f"Current Balance: R{updated_balance:.2f}",fg='#35dd02')
     beneficiary_notif.config(text="Balance Updated",fg='#35dd02',)
@@ -467,7 +467,7 @@ def personal_details():
     personal_details_screen.grab_set()
     personal_details_screen.title('Personal Details')
     personal_details_screen.configure(bg='black',pady=30, padx=10)
-    personal_details_screen.geometry('260x400')
+    personal_details_screen.geometry('300x550')
 
     Button(personal_details_screen,text="X", command=destroy_personal_details_screen).grid(row=0,sticky=E)
 
@@ -502,10 +502,10 @@ def statement_details():
     statement_details_screen.grab_set()
     statement_details_screen.title('Bank Statemet')
     statement_details_screen.configure(bg='black',pady=10, padx=20)
-    statement_details_screen.geometry('320x500')
+    statement_details_screen.geometry('320x550')
 
     Label(statement_details_screen,bg='black', image=details_img, borderwidth=0).grid(row=0,sticky=W,pady=15)
-    Label(statement_details_screen,bg='black', image=details_img_bottom, borderwidth=0).grid(row=6,sticky=N,pady=20, padx=10)
+    Label(statement_details_screen,bg='black', image=details_img_bottom, borderwidth=0).grid(row=7,sticky=N,pady=20, padx=10)
     Button(statement_details_screen,text="X", command=destroy_statement_details_screen).grid(row=0,sticky=E)
 
     Label(statement_details_screen, text="\nBank statement\n",bg='black',fg='white', font=("Baskervill Old Face",16, 'bold')).grid(row=0,sticky=N,pady=10)
@@ -520,7 +520,7 @@ def statement_details():
 
 
 def dashboard():
-    global login_name
+    # global login_name
     global account_dashboard
     all_accounts=os.listdir()
     account_No=temp_login_account.get()
@@ -542,6 +542,8 @@ def dashboard():
                 account_dashboard=Toplevel(bank_Window)
                 account_dashboard.title('Home')
                 account_dashboard.configure(bg='black',pady=30, padx=30)
+                account_dashboard.geometry('300x550')
+                account_dashboard.grab_set()
 
                 Button(account_dashboard,text="X",command=destroy_account_dashboard).grid(row=0,sticky=E)
                 Label(account_dashboard, text="Account Dashboard",bg='black',fg='white', font=("Baskervill Old Face",12)).grid(row=0,sticky=N,pady=10)
@@ -551,8 +553,8 @@ def dashboard():
                 Button(account_dashboard,bg='black',fg='white', text="Personal Details",font=("Baskervill Old Face",12),width=15,command=personal_details).grid(row=3,sticky=N,padx=5,pady=2)
                 Button(account_dashboard,bg='black',fg='white', text="Deposit",font=("Baskervill Old Face",12),width=15,command=deposit).grid(row=4,sticky=N,padx=10,pady=2)
                 Button(account_dashboard,bg='black',fg='white', text="Withdraw",font=("Baskervill Old Face",12),width=15,command=withdraw).grid(row=5,sticky=N,padx=10,pady=2)
-                Button(account_dashboard,bg='black',fg='white', text="Pay Beneficiary",font=("Baskervill Old Face",12),width=15,command=beneficiary).grid(row=5,sticky=N,padx=10,pady=2)
-                Button(account_dashboard,bg='black',fg='white', text="Statement",font=("Baskervill Old Face",12),width=15,command=statement_details).grid(row=6,sticky=N,padx=10,pady=2)
+                Button(account_dashboard,bg='black',fg='white', text="Pay Beneficiary",font=("Baskervill Old Face",12),width=15,command=beneficiary).grid(row=6,sticky=N,padx=10,pady=2)
+                Button(account_dashboard,bg='black',fg='white', text="Statement",font=("Baskervill Old Face",12),width=15,command=statement_details).grid(row=7,sticky=N,padx=10,pady=2)
                 # Label(account_dashboard).grid(row=5,sticky=N,pady=10)
 
                 return
@@ -576,7 +578,9 @@ def login():
 
     login_screen = Toplevel(bank_Window)
     login_screen.title('Login')
+    login_screen.grab_set()
     login_screen.configure(bg='black',pady=70, padx=30)
+    login_screen.geometry('300x550')
 
     Label(login_screen, text=" UBA ", font=('Bell MT', 30,'bold'), bg='red',fg='white').grid(row=0,sticky=N)
     # Label (login_screen, image=login_img_info, borderwidth=0,bg='black').grid(row=0,sticky=N,pady=10, padx=50)
