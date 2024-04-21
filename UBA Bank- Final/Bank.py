@@ -25,7 +25,8 @@ def passGen():
 
     global passEntry
     global pass_screen
-
+    global generateDone_notif
+    
     pass_screen=Toplevel(bank_Window)
     pass_screen.grab_set()
     
@@ -46,14 +47,19 @@ def passGen():
 
     passEntry = Entry(pass_screen, width=30, border=2, font=("Arial", 8))
     passEntry.grid(row=5, pady=10)
-
+    
+    generateDone_notif=Label(pass_screen, font=('Baskervill Old Face',10),bg='black', fg='green')
+    generateDone_notif.grid(row=6,sticky=N, pady=10)
+    
+    
+    
     generatorButton = Button(pass_screen, text="Generate", bg="black",
                              fg="white", cursor="hand2", command=generatePass, font=("Arial", 12))
-    generatorButton.grid(row=6, sticky=W, padx=10, pady=5)
+    generatorButton.grid(row=7, sticky=W, padx=10, pady=5)
 
     copyButton = Button(pass_screen, text="Copy", command=copy, fg="white",bg="black", cursor="hand2",
                         font=("Arial", 12))
-    copyButton.grid(row=6, sticky=E, padx=30, pady=5)
+    copyButton.grid(row=7, sticky=E, padx=30, pady=5)
 
 def forgetReg():
     pass_screen.place(x=300,y=3)
@@ -61,7 +67,7 @@ def forgetReg():
 
 def generatePass():
     # password_length = 8 if choice.get() == 1 else 12
-    
+
     lower_char = string.ascii_lowercase
     upper_char = string.ascii_uppercase
     num = string.digits
@@ -75,6 +81,11 @@ def generatePass():
         password = random.sample(lower_char+num+upper_char, password_length)
         password = "".join(password)
         passEntry.insert(0, password)
+        messagebox.showinfo(title="Congratulations!", 
+             message=("YOU HAVE SUCCESSFULLY GENERATED YOUR PASSWORD!!\n\n Please copy and past it on the password field to complete your registration.\n"))
+    
+        generateDone_notif.config(fg="#35dd02", text="Copy and close to continue.")
+  
         return password
 
     elif choice.get() == 2:
@@ -83,18 +94,27 @@ def generatePass():
         password = random.sample(passwordPool, password_length)
         password = "".join(password)
         passEntry.insert(0, password)
+        messagebox.showinfo(title="Congratulations!", 
+             message=("YOU HAVE SUCCESSFULLY GENERATED YOUR PASSWORD!!\n\n Please copy and past it on the password field to complete your registration.\n"))
+    
+        generateDone_notif.config(fg="#35dd02", text="Copy and close to continue.")
         return password
     
+    else :
+        generateDone_notif.config(fg="red", text="Select an option.")
+        return
+   
     pass_screen.grab_set()
-    messagebox.showinfo(title="Congratulations!", 
-                        message=("YOU HAVE SUCCESSFULLY GENERATED YOUR PASSWORD!!\n\n Please copy and past it on the password field to complete your registration.\n"))
-
+   
 
 def copy():
-
-    randomPass=passEntry.get()
-    pyperclip.copy(randomPass)
-    pass_screen.destroy()
+    if passEntry.get() =="":
+        generateDone_notif.config(fg="red", text="You have not generated a password.")
+        return
+    else:
+        randomPass=passEntry.get()
+        pyperclip.copy(randomPass)
+        pass_screen.destroy()
 
     
 def finish_reg():
