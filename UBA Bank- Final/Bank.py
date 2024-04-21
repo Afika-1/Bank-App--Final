@@ -144,6 +144,7 @@ def finish_reg():
             notif.config(fg="#35dd02", text="Account has been create")
             
             register_screen.destroy()
+            login()
             return          
 
 
@@ -199,25 +200,32 @@ def closeWindows():
 def destroy_register_screen():
     register_screen.destroy()
 def destroy_deposit_screen():
+    dashboard()
     deposit_screen.destroy()
+   
 def destroy_withdraw_screen():
+    dashboard()
     withdraw_screen.destroy()
 
 def destroy_beneficiary_screen():
+    dashboard()
     beneficiary_screen.destroy()
 
 def destroy_personal_details_screen():
+    dashboard()
     personal_details_screen.destroy()
 
 def destroy_account_dashboard():
+    
     account_dashboard.destroy()
 
 def destroy_statement_details_screen():
+    dashboard()
     statement_details_screen.destroy()
 
 
 def deposit():
-
+     account_dashboard.destroy()
      global amount
      global deposit_notif
      global current_balance_label
@@ -230,6 +238,7 @@ def deposit():
      details_balance=float(user_details[4])
 
      deposit_screen=Toplevel(bank_Window)
+     deposit_screen.grab_set()
      deposit_screen.title('Deposit')
      deposit_screen.configure(bg='black',pady=40,padx=20)
      deposit_screen.geometry('250x400')
@@ -280,6 +289,8 @@ def finish_deposit():
     current_balance_label.config(text=f"Current Balance: R{updated_balance:.2f}",fg="#35dd02",bg='black')
     deposit_notif.config(text="Balance Updated",fg='#35dd02',bg='black')
     messagebox.showinfo(title="Congratulations!", message=("YOUR TRANSACTION WAS SUCCESSFUL!!! \n\n"))
+    
+    amount.set("")
 
 
     "Transactions Log on a text file"
@@ -289,6 +300,7 @@ def transaction_log(transaction):
         file.write(transaction +"\n")
 
 def withdraw():
+     account_dashboard.destroy()
      global withdraw_amount
      global withdraw_notif
      global current_balance_label
@@ -300,6 +312,7 @@ def withdraw():
      details_balance=float(user_details[4])
 
      withdraw_screen=Toplevel(bank_Window)
+     withdraw_screen.grab_set()
      withdraw_screen.title('Withdraw')
      withdraw_screen.configure(bg='black',pady=40,padx=20)
      withdraw_screen.geometry('250x400')
@@ -355,8 +368,10 @@ def finish_withdraw():
 
     current_balance_label.config(text=f"Current Balance: R{updated_balance:.2f}",fg='#35dd02')
     withdraw_notif.config(text="Balance Updated",fg='#35dd02',)
+    withdraw_amount.set("")
 
 def beneficiary():
+     account_dashboard.destroy()
      global beneficiary_amount
      global beneficiary_notif
      global current_balance_label
@@ -370,6 +385,7 @@ def beneficiary():
      details_balance=float(user_details[4])
 
      beneficiary_screen=Toplevel(bank_Window)
+     beneficiary_screen.grab_set()
      beneficiary_screen.title('Withdraw')
      beneficiary_screen.configure(bg='black',pady=40,padx=20)
      beneficiary_screen.geometry('280x450')
@@ -377,7 +393,7 @@ def beneficiary():
      Label(beneficiary_screen, image=withdraw_img, borderwidth=0,bg='black').grid(row=0,sticky=W)
      Button(beneficiary_screen,text="X",command=destroy_beneficiary_screen).grid(row=0,sticky=E)
 
-     Label(beneficiary_screen, text="Pay Beneficiary",bg='black',fg='white', font=("Baskervill Old Face", 16, 'bold')).grid(row=0,sticky=N,pady=10) 
+     Label(beneficiary_screen, text="Pay",bg='black',fg='white', font=("Baskervill Old Face", 16, 'bold')).grid(row=0,sticky=N,pady=10) 
      Label(beneficiary_screen,text='\nPlease enter the amount you\nwould like to withdraw below.\n',bg='black',fg='white', font=("Baskervill Old Face",12)).grid(row=1,sticky=N,pady=10)
      current_balance_label=Label(beneficiary_screen, text=f"Current Balance: R{details_balance:.2f}",bg='black',fg='white', font=('Baskervill Old Face', 12))
      current_balance_label.grid(row=3,sticky=W)
@@ -430,14 +446,14 @@ def finish_payment():
     # transaction_log("A Payment of: -R"+beneficiary_amount.get()+" has been made on \n\To Account: "+beneficiary_account.get()+"\n\t"+'Date: '+transaction_datetime.strftime("%y/%m/%d %H:%M:%S")+ f"\n\tUpdated balance: R{updated_balance:.2f}")
     transaction_log("A Payment of: -R" + beneficiary_amount.get() + " has been made on \\n\\To Account: " + beneficiary_account.get() + "\\n\\t" + 'Date: ' + transaction_datetime.strftime("%y/%m/%d %H:%M:%S") + f"\\n\\tUpdated balance: R{updated_balance:.2f}")
 
-    messagebox.showinfo(title="Congratulations!", message=("YOUR PAYMENT WAS SUCCESSFUL!!! \n\n"),  command=login_session)
+    messagebox.showinfo(title="Congratulations!", message=("YOUR PAYMENT WAS SUCCESSFUL!!! \n\n"),  command=dashboard)
 
     current_balance_label.config(text=f"Current Balance: R{updated_balance:.2f}",fg='#35dd02')
     beneficiary_notif.config(text="Balance Updated",fg='#35dd02',)
 
 
 def personal_details():
-    
+    account_dashboard.destroy()
     file=open('Login Database.txt', 'r')
     file_data=file.read()
     user_details=file_data.split('\n')
@@ -448,6 +464,7 @@ def personal_details():
     global personal_details_screen
 
     personal_details_screen=Toplevel(bank_Window)
+    personal_details_screen.grab_set()
     personal_details_screen.title('Personal Details')
     personal_details_screen.configure(bg='black',pady=30, padx=10)
     personal_details_screen.geometry('260x400')
@@ -467,6 +484,7 @@ def personal_details():
 
 
 def statement_details():
+    account_dashboard.destroy()
     file=open('Login Database.txt', 'r')
     file_data=file.read()
     user_details=file_data.split('\n')
@@ -481,6 +499,7 @@ def statement_details():
 
 
     statement_details_screen=Toplevel(bank_Window)
+    statement_details_screen.grab_set()
     statement_details_screen.title('Bank Statemet')
     statement_details_screen.configure(bg='black',pady=10, padx=20)
     statement_details_screen.geometry('320x500')
@@ -500,7 +519,7 @@ def statement_details():
 
 
 
-def login_session():
+def dashboard():
     global login_name
     global account_dashboard
     all_accounts=os.listdir()
@@ -545,7 +564,7 @@ def login_session():
 
 
 def login():
-
+    
     global temp_login_account
     global temp_login_password
     global login_notif
@@ -573,7 +592,7 @@ def login():
     Button(login_screen, text="Forgot password",bg='black',border=0,fg='gray',cursor="hand2",command=forgot_password,font=('Baskervill Old Face',12)).grid(row=4, column=0,sticky=E)
     login_notif=Label(login_screen,bg='black',fg='white', font=('Baskervill Old Face',12))
     login_notif.grid(row=5,sticky=N)
-    Button(login_screen,text="Login",bg='black',fg='white', command=login_session,cursor="hand2", width=15,font=("Baskervill Old Face", 12)).grid(row=6,sticky=W,padx=50,pady=10)
+    Button(login_screen,text="Login",bg='black',fg='white', command=dashboard,cursor="hand2", width=15,font=("Baskervill Old Face", 12)).grid(row=6,sticky=W,padx=50,pady=10)
 
 def forgot_password():
 
