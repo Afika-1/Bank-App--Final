@@ -33,3 +33,11 @@ To Account: 2
 A Withdrawal of: -R12 has been made on 
 	24/04/21 16:34:10
 	Updated balance: R42.00
+
+A deposit of: +R12332 has been made.
+	Date: 24/04/21 20:08:05.
+	Updated balance: R12332.00
+A Payment of: -R230 has been made on 
+To Account: 30034234
+	Date: 24/04/21 20:08:25
+	Updated balance: R12102.00

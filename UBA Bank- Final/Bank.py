@@ -613,7 +613,7 @@ def login():
     Button(login_screen,text="Login",bg='black',fg='white', command=dashboard,cursor="hand2", width=15,font=("Baskervill Old Face", 12)).grid(row=6,sticky=W,padx=50,pady=10)
 
 def forgot_password():
-
+    login_screen.destroy()
     global temp_username
     global temp_new_password
     global pass_notif
@@ -626,6 +626,8 @@ def forgot_password():
     # file_data = file.read()
     # user_details=file_data.split('\n')
     # forgot_password=float(user_details[3])
+    
+    
 
     forgot_password_screen=Toplevel(bank_Window)
     forgot_password_screen.title('Reset Password')
@@ -649,46 +651,87 @@ def forgot_password():
 
     Button(forgot_password_screen,text="Reset", command=reset_session,cursor="hand2", width=10,fg='white' ,bg="black",font=("Baskervill Old Face", 12)).grid(row=6,sticky=E,padx=10,pady=10)
 
+# def reset_session():
+#     global username
+
+#     username=temp_username.get()
+#     new_password=temp_new_password.get()
+#     all_accounts=os.listdir()
+    
+#     file=open('Login Database.txt', 'r+')
+#     file_data=file.read()
+#     details=file_data.split('\n')
+#     my_account=file_data[0]
+
+#     pass_notif.config(fg='green', text="Password successfully reset")
+
+#     if username=="":
+#         pass_notif.config(fg='red', text="Enter valid username")
+
+
+#         while 'Login Database.txt' in all_accounts:
+#             if username==my_account and new_password=="":
+#                 pass_notif.config(fg='gray', text="Enter new password")
+
+#             file=open('Login Database.txt', 'r+')
+#             file_data=file.read()
+#             details=file_data.split('\n')
+#             current_password=details[3]
+#             updated_password=new_password
+#             file_data=file_data.replace(current_password, updated_password)
+#             pass_notif.config(fg='green', text="Password successfully changed")
+
+
+#             file.seek(0)
+#             file.truncate(0)
+#             file.write(file_data)
+#             file.close()
+            
+            
+#             forgot_password_screen.destroy()
+#             login()
+#             messagebox.showinfo(title="Password Reset", message=("\nYOUR PASSWORD WAS SUCCESSFULY RESET!!! \n\n"))
+
+
+
+
+import os
+
 def reset_session():
     global username
 
-    username=temp_username.get()
-    new_password=temp_new_password.get()
-    all_accounts=os.listdir()
-    
-    file=open('Login Database.txt', 'r+')
-    file_data=file.read()
-    details=file_data.split('\n')
-    my_account=file_data[0]
+    username = temp_username.get()
+    new_password = temp_new_password.get()
 
-    pass_notif.config(fg='green', text="Password successfully reset")
-
-    if username=="":
+    if username == "":
         pass_notif.config(fg='red', text="Enter valid username")
+        return
 
+    if new_password == "":
+        pass_notif.config(fg='gray', text="Enter new password")
+        return
 
-        while 'Login Database.txt' in all_accounts:
-            if username==my_account and new_password=="":
-                pass_notif.config(fg='gray', text="Enter new password")
+    with open('Login Database.txt', 'r+') as file:
+        file_data = file.read()
+        details = file_data.split('\n')
 
-            file=open('Login Database.txt', 'r+')
-            file_data=file.read()
-            details=file_data.split('\n')
-            current_password=details[3]
-            updated_password=new_password
-            file_data=file_data.replace(current_password, updated_password)
-            pass_notif.config(fg='green', text="Password successfully changed")
+        my_account = details[1]
 
+        if username == my_account:
+            current_password = details[3]
+            updated_password = new_password
+            file_data = file_data.replace(current_password, updated_password)
 
             file.seek(0)
             file.truncate(0)
             file.write(file_data)
-            file.close()
-            
-            
+
+            pass_notif.config(fg='green', text="Password successfully changed")
             forgot_password_screen.destroy()
             login()
-            messagebox.showinfo(title="Password Reset", message=("\nYOUR PASSWORD WAS SUCCESSFULY RESET!!! \n\n"))
+            messagebox.showinfo(title="Password Reset", message=("\nYOUR PASSWORD WAS SUCCESSFULLY RESET!!! \n\n"))
+        else:
+            pass_notif.config(fg='red', text="Username does not match 'my-account'")
 
     
 
