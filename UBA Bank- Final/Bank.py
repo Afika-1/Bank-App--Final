@@ -481,46 +481,60 @@ def personal_details():
     Label(personal_details_screen, text="ID Number: "+details_idNumber,bg='black',fg='white', font=("Baskervill Old Face",12)).grid(row=3,sticky=W)
     Label(personal_details_screen, text=f"Balance: R{details_balance:.2f}",bg='black',fg='white', font=("Baskervill Old Face",12)).grid(row=4,sticky=W)
 
-
-
 def statement_details():
     account_dashboard.destroy()
-    file=open('Login Database.txt', 'r')
-    file_data=file.read()
-    user_details=file_data.split('\n')
-    details_name=user_details[0]
-    details_account_num=user_details[1]
-    details_idNumber=user_details[2]
-    details_balance=float(user_details[4])
+    file = open('Login Database.txt', 'r')
+    file_data = file.read()
+    user_details = file_data.split('\n')
+    details_name = user_details[0]
+    details_account_num = user_details[1]
+    details_idNumber = user_details[2]
+    details_balance = float(user_details[4])
     global statement_details_screen
 
-    transaction_file= open('Transaction Log.txt', 'r+' )
-    transaction_details=transaction_file.read()
+    transaction_file = open('Transaction Log.txt', 'r+')
+    transaction_details = transaction_file.read()
 
-
-    statement_details_screen=Toplevel(bank_Window)
+    statement_details_screen = Toplevel(bank_Window)
     statement_details_screen.grab_set()
-    statement_details_screen.title('Bank Statemet')
-    statement_details_screen.configure(bg='black',pady=10, padx=20)
+    statement_details_screen.title('Bank Statement')
+    statement_details_screen.configure(bg='black', pady=10)
     statement_details_screen.geometry('320x550')
 
-    Label(statement_details_screen,bg='black', image=details_img, borderwidth=0).grid(row=0,sticky=W,pady=15)
-    Label(statement_details_screen,bg='black', image=details_img_bottom, borderwidth=0).grid(row=7,sticky=N,pady=20, padx=10)
-    Button(statement_details_screen,text="X", command=destroy_statement_details_screen).grid(row=0,sticky=E)
+    frame = Frame(statement_details_screen, bg='black')
+    frame.pack(fill=BOTH, expand=True)
 
-    Label(statement_details_screen, text="\nBank statement\n",bg='black',fg='white', font=("Baskervill Old Face",16, 'bold')).grid(row=0,sticky=N,pady=10)
+    scrollbar = Scrollbar(frame, orient='vertical')
+    scrollbar.pack(side=RIGHT, fill=Y)
 
-    Label(statement_details_screen, text="Account Holder: "+details_name,bg='black',fg='white', font=("Baskervill Old Face",12, 'bold')).grid(row=1,sticky=W)
-    Label(statement_details_screen, text="Account Number: "+details_account_num,bg='black',fg='white', font=("Baskervill Old Face",12, 'bold')).grid(row=2,sticky=W)
-    Label(statement_details_screen, text="ID Number: "+details_idNumber+"\n",bg='black',fg='white', font=("Baskervill Old Face",12, 'bold')).grid(row=3,sticky=W)
+    canvas = Canvas(frame, bg='black', yscrollcommand=scrollbar.set)
+    canvas.pack(side=LEFT, fill=BOTH, expand=True)
 
-    Label(statement_details_screen, text=transaction_details,bg='black',fg='white', font=("Baskervill Old Face",12)).grid(row=4)
-    Label(statement_details_screen, text=f"Current balance: R{details_balance:.2f}",bg='black',fg='white', font=("Baskervill Old Face",12)).grid(row=5,sticky=W)
+    scrollbar.config(command=canvas.yview)
+
+    canvas_frame = Frame(canvas, bg='black')
+    canvas.create_window((0, 0), window=canvas_frame, anchor='nw')
+
+    canvas_frame.bind('<Configure>', lambda e: canvas.configure(scrollregion=canvas.bbox('all')))
+
+    Label(canvas_frame, bg='black', image=details_img, borderwidth=0).grid(row=0, sticky=W, pady=15)
+    Label(canvas_frame, bg='black', image=details_img_bottom, borderwidth=0).grid(row=7, sticky=N, pady=20, padx=10)
+    Button(canvas_frame, text="X", command=destroy_statement_details_screen).grid(row=0, sticky=E)
+
+    Label(canvas_frame, text="\nBank statement\n", bg='black', fg='white', font=("Baskervill Old Face", 16, 'bold')).grid(row=0, sticky=N, pady=10)
+
+    Label(canvas_frame, text="Account Holder: " + details_name, bg='black', fg='white', font=("Baskervill Old Face", 12, 'bold')).grid(row=1, sticky=W)
+    Label(canvas_frame, text="Account Number: " + details_account_num, bg='black', fg='white', font=("Baskervill Old Face", 12, 'bold')).grid(row=2, sticky=W)
+    Label(canvas_frame, text="ID Number: " + details_idNumber + "\n", bg='black', fg='white', font=("Baskervill Old Face", 12, 'bold')).grid(row=3, sticky=W)
+
+    Label(canvas_frame, text=transaction_details, bg='black', fg='white', font=("Baskervill Old Face", 12)).grid(row=4)
+    Label(canvas_frame, text=f"Current balance: R{details_balance:.2f}", bg='black', fg='white', font=("Baskervill Old Face", 12)).grid(row=5, sticky=W)
 
 
 
 def dashboard():
     # global login_name
+    global login_account
     global account_dashboard
     all_accounts=os.listdir()
     account_No=temp_login_account.get()
@@ -603,6 +617,7 @@ def forgot_password():
     global temp_username
     global temp_new_password
     global pass_notif
+    global forgot_password_screen
     temp_username=StringVar()
     temp_new_password=StringVar()
 
@@ -615,6 +630,8 @@ def forgot_password():
     forgot_password_screen=Toplevel(bank_Window)
     forgot_password_screen.title('Reset Password')
     forgot_password_screen.configure(bg='black',pady=20, padx=30)
+    forgot_password_screen.grab_set()
+    forgot_password_screen.geometry('300x550')
 
     Label(forgot_password_screen, text="Reset your password", bg='black',fg='white',
           font=('Baskervill Old Face',16, 'bold')).grid(row=1,sticky=N,pady=40,padx=20)
@@ -638,19 +655,20 @@ def reset_session():
     username=temp_username.get()
     new_password=temp_new_password.get()
     all_accounts=os.listdir()
-    # file=open('Login Database.txt', 'r+')
-    # file_data=file.read()
-    # details=file_data.split('\n')
-    # name=file_data[0]
+    
+    file=open('Login Database.txt', 'r+')
+    file_data=file.read()
+    details=file_data.split('\n')
+    my_account=file_data[0]
 
-    pass_notif.config(fg='green', text="Password successfully changed")
+    pass_notif.config(fg='green', text="Password successfully reset")
 
     if username=="":
         pass_notif.config(fg='red', text="Enter valid username")
 
 
         while 'Login Database.txt' in all_accounts:
-            if username==login_name and new_password=="":
+            if username==my_account and new_password=="":
                 pass_notif.config(fg='gray', text="Enter new password")
 
             file=open('Login Database.txt', 'r+')
@@ -667,6 +685,11 @@ def reset_session():
             file.write(file_data)
             file.close()
             
+            
+            forgot_password_screen.destroy()
+            login()
+            messagebox.showinfo(title="Password Reset", message=("\nYOUR PASSWORD WAS SUCCESSFULY RESET!!! \n\n"))
+
     
 
 #image
