@@ -13,7 +13,7 @@ bank_Window=Tk()
 bank_Window.title('Banking App')
 bank_Window.geometry('340x550')
 
-bank_Window.configure(bg='maroon', pady=50)
+bank_Window.configure(bg='black', pady=50)
 
 """
     below is the Password generating code
@@ -609,8 +609,8 @@ def login():
     login_screen.configure(bg='black',pady=40, padx=30)
     login_screen.geometry('300x550')
 
-    # Label(login_screen, text=" UBA ", font=('Bell MT', 30,'bold'), bg='red',fg='white').grid(row=0,sticky=N)
-    Label (login_screen, image=login_img_info, borderwidth=0,bg='black').grid(row=0,sticky=N)
+    Label(login_screen, text=" UBA ", font=('Bell MT', 30,'bold'), bg='black',fg='red').grid(row=0,sticky=N)
+    # Label (login_screen, image=login_img_info, borderwidth=0,bg='black').grid(row=0,sticky=N)
 
     Label(login_screen, text="Login to your acocount", bg='black',fg='white',
           font=('Baskervill Old Face',12, 'bold')).grid(row=1,sticky=N,pady=40,padx=20)
@@ -696,7 +696,7 @@ def reset_session():
     
 
 #image
-img= Image.open('UBA Bank- Final/Media/uba-logo-copy@3x.png')
+img= Image.open('UBA Bank- Final/Media/United_Bank.png')
 img = img.resize((200,150))
 img= ImageTk.PhotoImage(img)
 
@@ -733,13 +733,13 @@ details_img_bottom = details_img_bottom.resize((70,50))
 details_img_bottom= ImageTk.PhotoImage(details_img_bottom)
 
 # Label(master, text="UNITED BANK FOR AFRICA", font=('Arial Black', 15,'bold'),bg='maroon',fg='white').grid(row=0,sticky=N)
-Label(bank_Window, text="Enterprise, Execution and Excellence",bg='maroon',fg='white', font=('Bell MT', 13, 'italic','bold')).grid(row=7,sticky=W,pady=75, padx=40)
-Label (bank_Window, image=img, borderwidth=0,bg='maroon').grid(row=1,sticky=N,pady=10, padx=50)
-Label(text="", bg='maroon').grid(row=3)
-Label(text="", bg='maroon').grid(row=4,pady=10)
+Label(bank_Window, text="Enterprise, Execution and Excellence",bg='black',fg='white', font=('Bell MT', 13, 'italic','bold')).grid(row=7,sticky=W,pady=75, padx=40)
+Label (bank_Window, image=img, borderwidth=0,bg='black', width=250, ).grid(row=0,sticky=N,pady=10, padx=50)
+Label(text="", bg='black').grid(row=3)
+Label(text="", bg='black').grid(row=4,pady=10)
 
-Button(bank_Window, text="Sign up",cursor="hand2",bg='maroon',fg='white', font=('Baskervill Old Face', 12),width=10,command=register).grid(row=5,sticky=N,pady=10)
-Button(bank_Window, text="Login", bg='maroon',fg='white',font=('Baskervill Old Face', 12),cursor="hand2" ,width=10,command=login).grid(row=6,sticky=N, pady=10)
+Button(bank_Window, text="Sign up",cursor="hand2",bg='#111111',fg='white', font=('Baskervill Old Face', 12),width=10,command=register).grid(row=5,sticky=N,pady=10)
+Button(bank_Window, text="Login", bg='#111111',fg='white',font=('Baskervill Old Face', 12),cursor="hand2" ,width=10,command=login).grid(row=6,sticky=N, pady=10)
    
 #----------------------------------------------------------------------------------------------------------------
 #----------------------------------------------------------------------------------------------------------------
