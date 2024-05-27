@@ -606,11 +606,11 @@ def login():
     login_screen = Toplevel(bank_Window)
     login_screen.title('Login')
     login_screen.grab_set()
-    login_screen.configure(bg='black',pady=70, padx=30)
+    login_screen.configure(bg='black',pady=40, padx=30)
     login_screen.geometry('300x550')
 
-    Label(login_screen, text=" UBA ", font=('Bell MT', 30,'bold'), bg='red',fg='white').grid(row=0,sticky=N)
-    # Label (login_screen, image=login_img_info, borderwidth=0,bg='black').grid(row=0,sticky=N,pady=10, padx=50)
+    # Label(login_screen, text=" UBA ", font=('Bell MT', 30,'bold'), bg='red',fg='white').grid(row=0,sticky=N)
+    Label (login_screen, image=login_img_info, borderwidth=0,bg='black').grid(row=0,sticky=N)
 
     Label(login_screen, text="Login to your acocount", bg='black',fg='white',
           font=('Baskervill Old Face',12, 'bold')).grid(row=1,sticky=N,pady=40,padx=20)
