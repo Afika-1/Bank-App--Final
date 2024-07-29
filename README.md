@@ -1,4 +1,4 @@
-These need to be installed for this code to run properly
+# These need to be installed for this code to run properly
 
 
      To run Tkinter 
