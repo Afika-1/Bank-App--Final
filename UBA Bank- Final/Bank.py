@@ -127,9 +127,24 @@ def finish_reg():
     if name=="" or account_num=="" or idNumber=="" or password=="":
         notif.config(fg="red", text="All fields required *")
         return
+  
     
     for name_check in all_accounts:
-        if name ==name_check:
+          
+        with open('Login Database.txt', 'r+') as file:
+            file_data = file.read()
+            details = file_data.split('\n')
+
+            name_check = details[0]
+            acc_num=details[1]
+
+
+        if name ==name_check :
+    
+            notif.config(fg="red", text="Account already exists")
+            return
+        
+        if account_num==acc_num:
             notif.config(fg="red", text="Account already exists")
             return
         else:
@@ -443,12 +458,14 @@ def finish_payment():
     file.close()
 
     transaction_datetime = datetime.datetime.now()
-    transaction_log("A Payment of: -R"+beneficiary_amount.get()+" has been made on \nTo Account: "+beneficiary_account.get()+"\n\t"+'Date: '+transaction_datetime.strftime("%y/%m/%d %H:%M:%S")+ f"\n\tUpdated balance: R{updated_balance:.2f}")
+    transaction_log("\nA Payment of: -R"+beneficiary_amount.get()+" has been made on \n\tTo Account: "+beneficiary_account.get()+"\n\t"+'Date: '+transaction_datetime.strftime("%y/%m/%d %H:%M:%S")+ f"\n\tUpdated balance: R{updated_balance:.2f}")
 
     messagebox.showinfo(title="Congratulations!", message=("\nYOUR PAYMENT WAS SUCCESSFUL!!! \n\n"))
 
     current_balance_label.config(text=f"Current Balance: R{updated_balance:.2f}",fg='#35dd02')
     beneficiary_notif.config(text="Balance Updated",fg='#35dd02',)
+    beneficiary_account.set("")
+    beneficiary_amount.set("")
 
 
 def personal_details():
@@ -475,10 +492,10 @@ def personal_details():
 
     Label(personal_details_screen, text="\nPersonal Details\n",bg='black',fg='white', font=("Baskervill Old Face",16, 'bold')).grid(row=0,sticky=N, padx=50,pady=10)
 
-    Label(personal_details_screen, text="\nAccount Holder: "+details_name,bg='black',fg='white', font=("Baskervill Old Face",12)).grid(row=1,sticky=W)
-    Label(personal_details_screen, text="Account Number: "+details_account_num,bg='black',fg='white', font=("Baskervill Old Face",12)).grid(row=2,sticky=W)
-    Label(personal_details_screen, text="ID Number: "+details_idNumber,bg='black',fg='white', font=("Baskervill Old Face",12)).grid(row=3,sticky=W)
-    Label(personal_details_screen, text=f"Balance: R{details_balance:.2f}",bg='black',fg='white', font=("Baskervill Old Face",12)).grid(row=4,sticky=W)
+    Label(personal_details_screen, text="\n Account Holder: "+details_name,bg='black',fg='white', font=("Baskervill Old Face",12)).grid(row=1,sticky=W)
+    Label(personal_details_screen, text=" Account Number: "+details_account_num,bg='black',fg='white', font=("Baskervill Old Face",12)).grid(row=2,sticky=W)
+    Label(personal_details_screen, text=" ID Number: "+details_idNumber,bg='black',fg='white', font=("Baskervill Old Face",12)).grid(row=3,sticky=W)
+    Label(personal_details_screen, text=f" Balance: R{details_balance:.2f}",bg='black',fg='white', font=("Baskervill Old Face",12)).grid(row=4,sticky=W)
 
 def statement_details():
     account_dashboard.destroy()
@@ -642,7 +659,7 @@ def forgot_password():
 
     Label(forgot_password_screen, text="Reset your password", bg='black',fg='white',
           font=('Baskervill Old Face',16, 'bold')).grid(row=1,sticky=N,pady=40,padx=20)
-    Label(forgot_password_screen, text="Username:",bg='black',fg='white', font=('Baskervill Old Face', 12)).grid(row=2,sticky=W)
+    Label(forgot_password_screen, text="Account No:",bg='black',fg='white', font=('Baskervill Old Face', 12)).grid(row=2,sticky=W)
     Entry(forgot_password_screen, textvariable=temp_username).grid(row=2, column=0, sticky=E)
 
     Label(forgot_password_screen, text="New Password:",bg='black',fg='white', font=('Baskervill Old Face',12)).grid(row=3,pady=10,sticky=W)
@@ -664,11 +681,11 @@ def reset_session():
     new_password = temp_new_password.get()
 
     if username == "":
-        pass_notif.config(fg='red', text="Enter valid username")
+        pass_notif.config(fg='red', text="Enter valid account number")
         return
 
     if new_password == "":
-        pass_notif.config(fg='gray', text="Enter new password")
+        pass_notif.config(fg='red', text="Enter new password")
         return
 
     with open('Login Database.txt', 'r+') as file:
@@ -678,9 +695,10 @@ def reset_session():
         my_account = details[1]
 
         if username == my_account:
-            current_password = details[3]
+            # current_password = details[3]
             updated_password = new_password
-            file_data = file_data.replace(current_password, updated_password)
+            my_account = details[1]
+            file_data = file_data.replace(details[3], updated_password)
 
             file.seek(0)
             file.truncate(0)
@@ -691,7 +709,7 @@ def reset_session():
             login()
             messagebox.showinfo(title="Password Reset", message=("\nYOUR PASSWORD WAS SUCCESSFULLY RESET!!! \n\n"))
         else:
-            pass_notif.config(fg='red', text="Username does not exist")
+            pass_notif.config(fg='red', text="Account number does not exist")
 
     
 
