@@ -14,39 +14,31 @@
 
 # Bank App UI
 
-                    Landing Page;          
+                              Landing Page;          
 
 ![home](/Media/ReadMe/1home.png)   
 
-                     Sign Up/ Register; 
-![signUp](/Media/ReadMe/2sign%20up.png) 
+                     Sign Up/ Register;    |           login
+![signUp](/Media/ReadMe/2sign%20up.png) ![login](/Media/ReadMe/3login.png)
 
-                     login
-![login](/Media/ReadMe/3login.png)
 
-                    Dashboard
-![Dashboard](/Media/ReadMe/4Dashboard.png)
+                    Dashboard               |           Personal Details
+![Dashboard](/Media/ReadMe/4Dashboard.png)   ![Details](/Media/ReadMe/5Details.png)
 
-                    Personal Details
-![Details](/Media/ReadMe/5Details.png)
 
-                    Deposit
-![Deposit](/Media/ReadMe/6Deposit.png)
+                    Deposit                 |           Withdraw
+![Deposit](/Media/ReadMe/6Deposit.png) ![Withdraw](/Media/ReadMe/7Withdraw.png)
 
-                    Withdraw
-![Withdraw](/Media/ReadMe/7Withdraw.png)
 
-                    Pay Beneficiary
-![Pay](/Media/ReadMe/8beneficiary.png)
+                    Pay Beneficiary          |          Statement
+![Pay](/Media/ReadMe/8beneficiary.png) ![Statement](/Media/ReadMe/9Statement.png)
 
-                    Statement
-![Statement](/Media/ReadMe/9Statement.png)
 
-                    Password Reset
-![Reset](/Media/ReadMe/10Reset.png)
+                    Password Reset            |          Auto-Generate Passord
+![Reset](/Media/ReadMe/10Reset.png) ![generate](/Media/ReadMe/11Generate.png)
 
-                   Auto-Generate Passord
-![generate](/Media/ReadMe/11Generate.png)
+                  
+
 
 
 
