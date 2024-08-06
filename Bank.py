@@ -142,6 +142,7 @@ def finish_reg():
         if name ==name_check :
     
             notif.config(fg="red", text="Account already exists")
+            
             return
         
         if account_num==acc_num:
