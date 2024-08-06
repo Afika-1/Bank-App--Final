@@ -164,7 +164,6 @@ def finish_reg():
             return          
 
 
-#functions
 def register():
 
     global temp_name
