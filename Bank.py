@@ -696,7 +696,7 @@ def reset_session():
         if username == my_account:
             # current_password = details[3]
             updated_password = new_password
-            my_account = details[1]
+            # my_account = details[1]
             file_data = file_data.replace(details[3], updated_password)
 
             file.seek(0)
