@@ -758,9 +758,6 @@ Label(text="", bg='black').grid(row=4,pady=10)
 Button(bank_Window, text="Sign up",cursor="hand2",bg='#111111',fg='white', font=('Baskervill Old Face', 12),width=10,command=register).grid(row=5,sticky=N,pady=10)
 Button(bank_Window, text="Login", bg='#111111',fg='white',font=('Baskervill Old Face', 12),cursor="hand2" ,width=10,command=login).grid(row=6,sticky=N, pady=10)
    
-#----------------------------------------------------------------------------------------------------------------
-#----------------------------------------------------------------------------------------------------------------
-#----------------------------------------------------------------------------------------------------------------
 
 
 
