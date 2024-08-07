@@ -549,7 +549,6 @@ def statement_details():
 
 
 def dashboard():
-    # global login_name
     global login_account
     global account_dashboard
     all_accounts=os.listdir()
