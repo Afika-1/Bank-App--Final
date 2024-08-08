@@ -749,7 +749,7 @@ details_img_bottom= Image.open('Media/pngtree-bank-icon.png')
 details_img_bottom = details_img_bottom.resize((70,50))
 details_img_bottom= ImageTk.PhotoImage(details_img_bottom)
 
-Label(master, text="UNITED BANK FOR AFRICA", font=('Arial Black', 15,'bold'),bg='maroon',fg='white').grid(row=0,sticky=N)
+# Label(master, text="UNITED BANK FOR AFRICA", font=('Arial Black', 15,'bold'),bg='maroon',fg='white').grid(row=0,sticky=N)
 Label(bank_Window, text="Enterprise, Execution and Excellence",bg='black',fg='white', font=('Bell MT', 13, 'italic','bold')).grid(row=7,sticky=W,pady=75, padx=40)
 Label (bank_Window, image=img, borderwidth=0,bg='black', width=250, ).grid(row=0,sticky=N,pady=10, padx=50)
 Label(text="", bg='black').grid(row=3)
