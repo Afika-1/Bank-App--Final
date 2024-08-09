@@ -150,8 +150,8 @@ def finish_reg():
             return
         else:
             new_file = open('Login Database.txt',"w")
-            new_file.write(name+'\n')
             new_file.write(account_num+"\n")
+            new_file.write(name+'\n')
             new_file.write(idNumber+'\n')
             new_file.write(password+'\n')
 
