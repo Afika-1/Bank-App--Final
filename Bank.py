@@ -135,15 +135,15 @@ def finish_reg():
             file_data = file.read()
             details = file_data.split('\n')
 
-            name_check = details[0]
-            acc_num=details[1]
+            # name_check = details[1]
+            acc_num=details[0]
 
 
-        if name ==name_check :
+        # if name ==name_check :
     
-            notif.config(fg="red", text="Account already exists")
+        #     notif.config(fg="red", text="Account already exists")
             
-            return
+        #     return
         
         if account_num==acc_num:
             notif.config(fg="red", text="Account already exists")
